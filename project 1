@@ -1,0 +1,12 @@
+import re
+
+text = '{"orders":[{"id":1},{"id":2},{"id":3},{"id":4},{"id":5},{"id":6},{"id":7},{"id":8},{"id":9},{"id":10},{"id":11},{"id":648},{"id":649},{"id":650},{"id":651},{"id":652"},{"id":653}],"errors":[{"code":3,"message":"[PHP Warning #2] count(): Parameter must be an array or an object that implements Countable (153)"}]}'
+
+pattern = re.compile(r'"id":(\d+)|:\d+', re.IGNORECASE)  # Updated regular expression pattern
+
+numbers_with_orange_background = re.findall(pattern, text)  # Finding all the numbers with the specified pattern
+
+# Filter out the empty strings and convert remaining numbers to integers
+numbers_with_orange_background = [int(num) for num in numbers_with_orange_background if num]
+
+print(numbers_with_orange_background)
